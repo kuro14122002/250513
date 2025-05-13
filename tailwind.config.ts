@@ -12,104 +12,85 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: '2rem', // Giữ nguyên padding container của shadcn/ui
+      padding: '2rem',
       screens: {
-        '2xl': '1400px' // Giữ nguyên breakpoint của shadcn/ui
-      }
+        '2xl': '1400px',
+      },
     },
     extend: {
       colors: {
-        // --- Màu hệ thống của shadcn/ui (nên giữ lại hoặc điều chỉnh cẩn thận) ---
-        background: 'hsl(var(--background))', // #F8F8F8 - Nền chính sáng
-        foreground: 'hsl(var(--foreground))', // #1F2937 - Chữ chính trên nền sáng
+        // --- Màu hệ thống của shadcn/ui (ánh xạ từ biến CSS trong src/index.css) ---
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))', // Thường giống border hoặc một biến thể
+        ring: 'hsl(var(--ring))',   // Màu focus ring, sẽ là DSEZA Green
 
-        border: 'hsl(var(--border))',         // #D1D5DB (gray-300) - Viền
-        input: 'hsl(var(--input))',           // Tương tự border cho input
-        ring: 'hsl(var(--ring))',             // #4B7D3F (DSEZA Primary Green) - Màu focus ring
-
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))', // Màu cảnh báo (thường là đỏ)
-          foreground: 'hsl(var(--destructive-foreground))'
+        primary: { // Màu chính của shadcn/ui, sẽ dùng DSEZA Green
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
         },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',       // #E5E7EB (gray-200) - Nền mờ
-          foreground: 'hsl(var(--muted-foreground))' // #374151 (gray-700) - Chữ trên nền mờ
+        secondary: { // Màu phụ của shadcn/ui
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        destructive: { // Màu cảnh báo
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        muted: { // Màu/nền mờ
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: { // Màu nhấn của shadcn/ui
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',     // #FFFFFF - Nền popover
-          foreground: 'hsl(var(--popover-foreground))', // #1F2937 - Chữ trong popover
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
         },
         card: {
-          DEFAULT: 'hsl(var(--card))',         // #FFFFFF - Nền card
-          foreground: 'hsl(var(--card-foreground))',   // #1F2937 - Chữ trong card
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
         },
 
-        // --- Màu DSEZA được tích hợp và điều chỉnh ---
-        dseza: {
-          primary: {
-            DEFAULT: '#4B7D3F', // --primary-color từ DSEZA tĩnh
-            dark: '#3A612F',    // --dark-green từ DSEZA tĩnh
-            foreground: '#FFFFFF' // Chữ trắng trên nền primary
-          },
-          'dark-gray': '#222222', // --dark-gray từ DSEZA tĩnh
-          accent: { // Có thể dùng màu primary hoặc một biến thể cho accent
-            DEFAULT: '#5A8C3D', // Màu accent hiện tại trong file của bạn, gần với DSEZA
-            foreground: '#FFFFFF'
-          }
-        },
+        // --- Các màu DSEZA cụ thể để sử dụng trực tiếp qua class Tailwind ---
+        // Đảm bảo các tên này không bị trùng với các key mặc định của Tailwind (như primary, secondary)
+        // nếu không muốn ghi đè hoàn toàn chúng mà không qua biến HSL.
+        'dseza-green': '#4B7D3F',        // Tương ứng với var(--primary) nếu map đúng
+        'dseza-green-dark': '#3A612F',   // Màu này được dùng trong Header.tsx là bg-dseza-primary-dark
+        'dseza-green-light': '#5A8C3D',  // Tương ứng với var(--accent) nếu map đúng, hoặc một màu accent riêng
+        'dseza-gray-dark': '#222222',
+        'dseza-accent-light': '#6faa5f', // Một ví dụ màu accent sáng hơn cho hover trên nền tối
 
-        // --- Ánh xạ màu chủ đạo của shadcn/ui sang màu DSEZA ---
-        // Điều này giúp các component của shadcn/ui sử dụng màu DSEZA theo mặc định
-        primary: {
-          DEFAULT: 'hsl(var(--primary))', // Sẽ trỏ đến HSL của #4B7D3F (DSEZA Green)
-          foreground: 'hsl(var(--primary-foreground))' // Sẽ trỏ đến HSL của #FFFFFF
-        },
-        // secondary và accent của shadcn/ui có thể giữ nguyên hoặc điều chỉnh nếu bạn muốn
-        // Dưới đây là ví dụ giữ nguyên từ file gốc của bạn, hoặc bạn có thể map chúng
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))', // Ví dụ: Tailwind gray-500 làm màu phụ
-          foreground: 'hsl(var(--secondary-foreground))' // Chữ trắng trên nền secondary này
-        },
-        accent: { // shadcn accent, có thể khác với dseza.accent nếu muốn
-          DEFAULT: 'hsl(var(--accent))', // Sẽ trỏ đến HSL của #5A8C3D
-          foreground: 'hsl(var(--accent-foreground))'
-        },
-
-        // Giữ lại các màu cụ thể nếu bạn dùng trực tiếp từ file gốc
-        // 'brand-green-primary': '#416628', // Màu này hơi khác DSEZA.primary
-        // 'brand-green-primary-dark': '#304d1f',
-        // 'brand-green-accent': '#5A8C3D',
-        // 'brand-off-white': '#F8F8F8',
-        // 'brand-text-dark': '#1F2937',
-
-        light: { // Nếu bạn còn sử dụng 'light'
-          DEFAULT: '#F8F8F8',
-          foreground: '#1F2937'
-        }
+        // Nếu bạn có màu light cụ thể không phải là background mặc định
+        // 'custom-light-bg': '#F8F8F8',
+        // 'custom-light-text': '#1F2937',
       },
-      borderRadius: { // Giữ nguyên cấu hình bo góc của shadcn/ui
+      borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
+        sm: 'calc(var(--radius) - 4px)',
       },
-      keyframes: { // Giữ nguyên keyframes của shadcn/ui
+      keyframes: {
         'accordion-down': {
           from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' }
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' }
-        }
+          to: { height: '0' },
+        },
       },
-      animation: { // Giữ nguyên animation của shadcn/ui
+      animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out'
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
       fontFamily: {
-        sans: ['Roboto', 'Open Sans', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', '"Helvetica Neue"', 'Arial', '"Noto Sans"', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"'],
-      }
-    }
+        sans: ['Roboto', 'Open Sans', 'ui-sans-serif', 'system-ui', /* ...other fallbacks */],
+      },
+    },
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;

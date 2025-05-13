@@ -1,107 +1,234 @@
-/* src/index.css */
+/* src/index.css - PHIÊN BẢN GỢI Ý HOÀN CHỈNH */
+
+/* 1. Import Fonts (Từ style.css tĩnh và file gốc của bạn) */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Open+Sans:wght@400;500;600;700&display=swap');
 
+/* 2. Tailwind Directives (Luôn đặt ở đầu) */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* 3. Định nghĩa Biến CSS và Base Styles trong @layer base */
 @layer base {
   :root {
-    /* Màu nền và chữ mặc định của shadcn/ui */
-    --background: 0 0% 97%; /* #F8F8F8 (Sáng) */
-    --foreground: 215 28% 17%; /* #1F2937 (Tối) */
+    /* === MÀU SẮC CƠ BẢN CHO SHADCN/UI === */
+    /* Tham khảo từ style.css tĩnh và file gốc của bạn, ánh xạ sang HSL cho shadcn */
+    /* Ví dụ: --light-gray: #F8F8F8  => 0 0% 97% */
+    /* Ví dụ: --text-color: #333 (hoặc #1F2937 từ file gốc) => 215 28% 17% */
 
-    --card: 0 0% 100%;      /* #FFFFFF */
-    --card-foreground: 215 28% 17%;
+    --background: 0 0% 97%; /* #F8F8F8 - Nền sáng chính (tương đương --light-gray) */
+    --foreground: 215 28% 17%; /* #1F2937 / #333333 - Chữ chính trên nền sáng */
+
+    --card: 0 0% 100%;      /* #FFFFFF - Nền cho card, popover (tương đương --white) */
+    --card-foreground: 215 28% 17%; /* Chữ trên card */
 
     --popover: 0 0% 100%;
     --popover-foreground: 215 28% 17%;
 
-    /* === MÀU DSEZA ĐƯỢC ÁNH XẠ VÀO HỆ THỐNG SHADCN/UI === */
-    /* --primary-color: #4B7D3F (DSEZA Green) -> HSL: 109 32% 39% */
+    /* === MÀU DSEZA (Thương hiệu) ÁNH XẠ VÀO HỆ THỐNG SHADCN/UI === */
+    /* DSEZA Primary Green: #4B7D3F -> HSL: 109 32% 39% */
     --primary: 109 32% 39%;
-    --primary-foreground: 0 0% 100%; /* White */
+    --primary-foreground: 0 0% 100%; /* Chữ trắng trên nền primary */
 
-    /* --dark-green: #3A612F (DSEZA Dark Green) -> HSL: 109 36% 28% */
-    /* (Bạn có thể tạo biến --primary-dark-hsl nếu muốn dùng với hsl() trong config) */
+    /* DSEZA Accent (ví dụ dùng #5A8C3D -> HSL: 99 38% 45% hoặc --dark-green #3A612F) */
+    /* Bạn có thể chọn một trong hai hoặc một màu khác cho accent */
+    --accent: 99 38% 45%; /* #5A8C3D */
+    --accent-foreground: 0 0% 100%; /* Chữ trắng trên nền accent */
 
-    /* --accent (DSEZA Accent - có thể dùng một biến thể sáng hơn của primary) */
-    /* Ví dụ: #5A8C3D -> HSL: 99 38% 45% */
-    --accent: 99 38% 45%;
-    --accent-foreground: 0 0% 100%; /* White */
+    /* DSEZA Primary Green cũng được dùng cho focus ring */
+    --ring: 109 32% 39%;
 
-    /* --dark-gray: #222 (DSEZA Dark Gray) -> HSL: 0 0% 13% */
-    /* Có thể tạo biến --dseza-dark-gray-hsl: 0 0% 13%; nếu dùng nhiều */
+    /* === CÁC MÀU KHÁC CỦA SHADCN/UI === */
+    /* Bạn có thể giữ mặc định của shadcn hoặc tùy chỉnh */
+    --secondary: 210 40% 96.1%; /* Ví dụ: một màu xám nhạt hơn cho nền phụ */
+    --secondary-foreground: 222.2 47.4% 11.2%; /* Chữ trên nền phụ */
 
+    --destructive: 0 84.2% 60.2%; /* Màu đỏ cho destructive actions */
+    --destructive-foreground: 0 0% 98%; /* Chữ trên nền destructive */
 
-    /* Các màu khác của shadcn/ui */
-    --secondary: 216 13% 45%; /* #6B7280 (Gray-500) */
-    --secondary-foreground: 0 0% 100%; /* White */
+    --muted: 210 40% 90%; /* #E5E7EB (Gray-200) - Nền/chữ mờ */
+    --muted-foreground: 220 13% 40%; /* Chữ mờ hơn một chút #64748b */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --border: 210 31% 86%; /* #D1D5DB (Gray-300) - Viền */
+    --input: 210 31% 86%; /* Thường giống border cho input */
 
-    --muted: 210 40% 90%; /* #E5E7EB (Gray-200) */
-    --muted-foreground: 220 13% 28%; /* #374151 (Gray-700) */
+    /* === CÁC BIẾN KHÁC CHO SHADCN/UI === */
+    --radius: 0.5rem; /* Bán kính bo góc mặc định */
 
-    --border: 210 31% 86%; /* #D1D5DB (Gray-300) */
-    --input: 210 31% 86%;
-    --ring: 109 32% 39%; /* #4B7D3F (DSEZA Primary cho focus ring) */
-
-    --radius: 0.5rem;
+    /* === CÁC BIẾN MÀU DSEZA BỔ SUNG (TỪ STYLE.CSS TĨNH) === */
+    /* Có thể không cần thiết nếu đã map vào các biến shadcn ở trên */
+    /* Hoặc bạn có thể dùng trực tiếp trong tailwind.config.ts với tên tùy chỉnh */
+    /* --dseza-dark-green: #3A612F; (đã có trong tailwind.config.ts là dseza-green-dark) */
+    /* --dseza-dark-gray: #222222; (đã có trong tailwind.config.ts là dseza-gray-dark) */
   }
 
   .dark {
-    /* Cấu hình màu cho dark mode nếu dự án của bạn có */
+    /* === DARK MODE === */
+    /* Điều chỉnh các giá trị HSL này cho phù hợp với dark mode của bạn */
     --background: 215 28% 10%;    /* Ví dụ: #1a202c */
     --foreground: 0 0% 97%;       /* #F8F8F8 */
 
-    --card: 215 28% 17%;          /* #1F2937 */
+    --card: 215 28% 13%;          /* Nền card tối hơn một chút */
     --card-foreground: 0 0% 97%;
 
-    --popover: 215 28% 17%;
+    --popover: 215 28% 13%;
     --popover-foreground: 0 0% 97%;
 
-    /* Màu primary và accent có thể giữ nguyên hoặc điều chỉnh độ sáng cho dark mode */
     --primary: 109 32% 45%; /* Sáng hơn một chút cho dark mode */
     --primary-foreground: 0 0% 100%;
 
     --accent: 99 38% 50%; /* Sáng hơn một chút cho dark mode */
     --accent-foreground: 0 0% 100%;
 
-    --secondary: 216 13% 35%; /* Tối hơn một chút */
+    --secondary: 216 13% 25%; /* Nền phụ tối hơn */
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 220 13% 20%;
-    --muted-foreground: 210 40% 80%;
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --muted: 220 13% 25%;
+    --muted-foreground: 210 40% 70%;
 
     --border: 215 28% 25%;
     --input: 215 28% 25%;
-    --ring: 109 32% 45%; /* Sáng hơn một chút */
+    --ring: 109 32% 45%;
   }
 
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground font-sans; /* font-sans sẽ lấy từ tailwind.config.ts */
-  }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-bold;
-  }
-  /* Đảm bảo scroll-behavior cho toàn trang */
+  /* === BASE ELEMENT STYLES === */
+  /* Tailwind's preflight đã xử lý margin, padding, box-sizing */
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* Giữ lại từ style.css tĩnh */
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    /* font-family và line-height sẽ được Tailwind xử lý qua class font-sans */
+    /* và các utility cho line-height */
+    line-height: 1.6; /* Có thể giữ lại nếu muốn ghi đè line-height mặc định của Tailwind */
+  }
+
+  /* Không cần thiết nếu dùng utility class của Tailwind, nhưng có thể giữ nếu muốn style mặc định */
+  /*
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ul {
+    list-style: none;
+  }
+  */
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-bold; /* Đã có trong file gốc của bạn */
   }
 }
 
+
+/* 4. Custom Components trong @layer components (nếu cần) */
 @layer components {
-  .container-custom {
-    @apply container mx-auto px-4; /* Giữ nguyên từ dự án React */
+  /* Class .container từ style.css tĩnh */
+  /* Dự án React của bạn đã có .container-custom, bạn có thể: */
+  /* a) Đổi tên .container-custom thành .container ở mọi nơi */
+  /* b) Hoặc định nghĩa .container giống .container-custom */
+  .container {
+    @apply w-full max-w-[1200px] mx-auto px-[15px];
   }
 
-  .card-header { /* Giữ nguyên từ dự án React */
-    @apply bg-primary text-primary-foreground font-bold p-3 rounded-t;
+  .container-custom { /* Giữ lại từ dự án React của bạn */
+    @apply container mx-auto px-4; /* container của tailwind đã có mx-auto */
   }
-  /* Không cần định nghĩa lại .btn nếu DsezaStaticHeader dùng các class Tailwind trực tiếp */
+
+  /* Class .btn từ style.css tĩnh */
+  /* Nên ưu tiên sử dụng component <Button> của shadcn/ui. */
+  /* Nếu vẫn muốn dùng class .btn này cho các thẻ <a> hoặc button không phải component, bạn có thể định nghĩa ở đây */
+  /* Tuy nhiên, hãy cân nhắc kỹ vì nó có thể không nhất quán với theme shadcn */
+  /*
+  .btn {
+    @apply inline-block py-[10px] px-[25px] bg-primary text-primary-foreground rounded-full font-bold text-sm uppercase transition-colors duration-300 border-none cursor-pointer;
+  }
+  .btn:hover {
+    @apply bg-primary/90; // Ví dụ: làm tối màu primary đi một chút
+  }
+  */
+
+
+  /* Các class từ file tĩnh (style.css) mà bạn muốn giữ lại và khó tái tạo bằng Tailwind */
+  /* Ví dụ: .logo-text, .stat-item, .arrow-circle, .tab (nếu không dùng component Tabs của shadcn) */
+  /* Hãy cố gắng sử dụng utility classes của Tailwind trước khi thêm CSS tùy chỉnh ở đây. */
+
+  /* Ví dụ cho .logo-text từ style.css tĩnh, nếu dùng trong DsezaStaticHeader */
+  .logo-text .main-text {
+    /* Tailwind classes: text-2xl font-black tracking-wider */
+  }
+  .logo-text .sub-text {
+    /* Tailwind classes: text-[11px] font-medium tracking-[0.5px] leading-tight */
+  }
+
+
+  /* Ví dụ cho .stat-item, .stat-number, .stat-desc từ style.css tĩnh */
+  /* Nếu bạn không tạo component React riêng cho chúng và muốn dùng class */
+  /*
+  .stat-item {
+     @apply mr-[50px] flex flex-col items-center;
+  }
+  .stat-item:last-child {
+    @apply mr-0;
+  }
+  .stat-number {
+    @apply block text-[34px] font-black text-foreground leading-tight mb-[5px]; // text-foreground thay cho var(--text-color)
+  }
+  .stat-desc {
+    @apply block text-xs font-bold text-gray-600 uppercase tracking-[0.5px] mt-0; // text-gray-600 ví dụ
+  }
+  */
+
+  /* Ví dụ cho .btn-learn-more và .arrow-circle từ style.css tĩnh */
+  /* Nên xem xét dùng Button component của shadcn cho .btn-learn-more */
+  /*
+  .btn-learn-more {
+    @apply py-[8px] pr-[25px] pl-[18px] text-xs rounded-full bg-white text-gray-800 border border-gray-300 font-bold transition-colors duration-300 cursor-pointer;
+  }
+  .btn-learn-more:hover {
+    @apply bg-gray-100 border-gray-400;
+  }
+  .arrow-circle {
+    @apply inline-flex items-center justify-center w-[30px] h-[30px] bg-primary text-primary-foreground rounded-full text-lg leading-none cursor-pointer transition-colors duration-300 ml-[-15px] z-10;
+  }
+  .arrow-circle:hover {
+     @apply bg-primary/90;
+  }
+  */
+
+  /* Class .tab và .tab.active từ style.css tĩnh */
+  /* Nếu bạn dùng component Tabs của shadcn/ui, bạn không cần những class này */
+  /*
+  .tab {
+    @apply py-[10px] font-bold relative mr-[30px] text-gray-400 uppercase text-sm cursor-pointer;
+  }
+  .tab:last-child{
+    @apply mr-0;
+  }
+  .tab.active {
+    @apply text-foreground font-black; // text-foreground thay cho var(--text-color)
+  }
+  .tab.active::after {
+    content: '';
+    @apply absolute bottom-[-1px] left-0 w-full h-[3px] bg-primary;
+  }
+  */
+
 }
+
+/* 5. Responsive Styles từ style.css tĩnh */
+/* Tailwind là mobile-first, nên nhiều style responsive sẽ được xử lý trực tiếp bằng các prefix như sm:, md:, lg: trong JSX. */
+/* Tuy nhiên, nếu có những thay đổi cấu trúc lớn ở các breakpoint cụ thể mà khó làm với Tailwind utility, bạn có thể thêm ở đây. */
+/* Nhưng hãy cố gắng hạn chế. */
+
+/* Ví dụ:
+@media (max-width: 992px) {
+    .main-content-custom-tablet { // Đặt tên class mới nếu cần
+        @apply flex-col py-10;
+    }
+}
+*/
