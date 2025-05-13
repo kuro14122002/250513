@@ -1,3 +1,4 @@
+// tsconfig.app.json - KHÔNG CẦN THAY ĐỔI
 {
   "compilerOptions": {
     "target": "ES2020",
@@ -15,11 +16,11 @@
     "jsx": "react-jsx",
 
     /* Linting */
-    "strict": false,
+    "strict": false, // Bạn có thể đặt là true để kiểm tra kiểu chặt chẽ hơn
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noImplicitAny": false,
-    "noFallthroughCasesInSwitch": false,
+    "noFallthroughCasesInSwitch": false, // Nên đặt là true để tránh lỗi logic
 
     "baseUrl": ".",
     "paths": {
@@ -27,4 +28,5 @@
     }
   },
   "include": ["src"]
+  // "references" nếu có, thường nằm trong tsconfig.json chính
 }

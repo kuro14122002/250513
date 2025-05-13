@@ -1,5 +1,5 @@
 // src/components/Header.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // Thay MapSigns bằng Sitemap (hoặc icon bạn chọn)
 import { Globe, User, Map, Search as SearchIcon } from 'lucide-react';
 import DsezaStaticHeader from './DsezaStaticHeader';
@@ -11,48 +11,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
-  const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const isMobile = useIsMobile();
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentDateTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const formatDate = (date: Date): string => {
-    const timeOptions: Intl.DateTimeFormatOptions = {
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false,
-    };
-
-    if (isMobile) {
-      const optionsDateMobile: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
-      return new Intl.DateTimeFormat(currentLang === 'vi' ? 'vi-VN' : 'en-US', optionsDateMobile).format(date);
-    } else {
-      let datePart;
-      if (currentLang === 'vi') {
-        const dayOfWeek = new Intl.DateTimeFormat('vi-VN', { weekday: 'long' }).format(date);
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const year = date.getFullYear();
-        datePart = `${dayOfWeek}, ngày ${day} tháng ${month} năm ${year}`;
-      } else {
-        const desktopDateOptions: Intl.DateTimeFormatOptions = {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        };
-        datePart = new Intl.DateTimeFormat('en-US', desktopDateOptions).format(date);
-      }
-      const timePart = new Intl.DateTimeFormat(currentLang === 'vi' ? 'vi-VN' : 'en-US', timeOptions).format(date);
-      return `${datePart}, ${timePart}`;
-    }
-  };
 
   const toggleLanguage = () => {
     const newLang = currentLang === 'vi' ? 'en' : 'vi';
@@ -68,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
     <header id="page-header" className="w-full sticky top-0 z-[100] shadow-md bg-white">
       <div className="bg-dseza-green-dark text-white"> {/* Đảm bảo 'dseza-green-dark' được định nghĩa trong tailwind.config.ts */}
         <div className="container-custom flex flex-wrap justify-between items-center py-2 text-xs sm:text-sm">
-          <div>{formatDate(currentDateTime)}</div>
+          <div></div> {/* Placeholder for date/time if needed */}
           <div className="flex items-center space-x-3 sm:space-x-4">
             {/* Sử dụng icon Map thay vì Sitemap */}
             <a href="/sitemap" className="flex items-center hover:text-dseza-accent-hover"> {/* Đảm bảo 'dseza-accent-hover' có trong tailwind.config.ts */}

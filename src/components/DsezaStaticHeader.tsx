@@ -1,10 +1,9 @@
 // src/components/DsezaStaticHeader.tsx
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react'; // Cho mobile menu
+import { Menu, X } from 'lucide-react'; // For mobile menu
 
 interface DsezaStaticHeaderProps {
   currentLang: string;
-  // Thêm hàm để xử lý click vào link, ví dụ để cuộn mượt
   onNavLinkClick?: (targetId: string) => void;
 }
 
@@ -24,19 +23,15 @@ const DsezaStaticHeader: React.FC<DsezaStaticHeaderProps> = ({ currentLang, onNa
   };
 
   const contactButtonText = currentLang === 'vi' ? 'LIÊN HỆ' : 'CONTACT';
-  const dsezaLogoText = "DSEZA";
-  const innovationHubText = "INNOVATION HUB";
-  const sustainableDevelopmentText = "SUSTAINABLE DEVELOPMENT";
-
+  
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    e.preventDefault(); // Ngăn hành vi mặc định của thẻ <a>
+    e.preventDefault();
     if (onNavLinkClick) {
       onNavLinkClick(targetId);
     } else {
-      // Fallback nếu không có hàm xử lý cuộn từ props
       const element = document.getElementById(targetId);
       if (element) {
-        const headerOffset = document.getElementById('page-header')?.offsetHeight || 80; // Lấy chiều cao header chung
+        const headerOffset = document.getElementById('page-header')?.offsetHeight || 80;
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
         window.scrollTo({
@@ -48,19 +43,15 @@ const DsezaStaticHeader: React.FC<DsezaStaticHeaderProps> = ({ currentLang, onNa
     if (isMobileMenuOpen) setIsMobileMenuOpen(false);
   };
 
-
   return (
-    // Sử dụng class Tailwind cho màu nền --dark-gray
-    <div className="bg-dseza-gray-dark text-white"> {/* Đảm bảo 'dseza-gray-dark' có trong tailwind.config.ts */}
-      <div className="container-custom flex items-center justify-between py-[15px]"> {/* py-4 của tailwind là 1rem (16px) */}
+    <div className="bg-dseza-gray-dark text-white">
+      <div className="container-custom flex items-center justify-between py-[15px]">
         {/* Logo DSEZA */}
         <div className="flex items-center">
-          {/* Thay bằng ảnh logo nếu có, ví dụ từ /public */}
-          {/* <img src="/dseza_logo_dseza.png" alt="DSEZA Logo" className="h-10 mr-3"/> */}
-          <div className="logo-text"> {/* Các class này có thể cần định nghĩa trong src/index.css nếu Tailwind không đủ */}
-            <div className="text-2xl font-black tracking-wider">{dsezaLogoText}</div>
-            <div className="text-[11px] font-medium tracking-[0.5px] leading-tight">{innovationHubText}</div>
-            <div className="text-[11px] font-medium tracking-[0.5px] leading-tight">{sustainableDevelopmentText}</div>
+          <div className="logo-text-react">
+            <div className="text-2xl font-black tracking-wider">DSEZA</div>
+            <div className="text-[11px] font-medium tracking-[0.5px] leading-tight">INNOVATION HUB</div>
+            <div className="text-[11px] font-medium tracking-[0.5px] leading-tight">SUSTAINABLE DEVELOPMENT</div>
           </div>
         </div>
 
@@ -72,7 +63,7 @@ const DsezaStaticHeader: React.FC<DsezaStaticHeaderProps> = ({ currentLang, onNa
                 <a
                   href={`#${item.id}`}
                   onClick={(e) => handleNavClick(e, item.id)}
-                  className="font-medium text-sm hover:text-dseza-green transition-colors py-3 px-2" // Sử dụng dseza-green
+                  className="font-medium text-sm hover:text-dseza-green transition-colors"
                 >
                   {getLabel(item)}
                 </a>
@@ -84,10 +75,8 @@ const DsezaStaticHeader: React.FC<DsezaStaticHeaderProps> = ({ currentLang, onNa
         {/* Contact Button (Desktop) */}
         <div className="hidden lg:block">
           <a
-            href="#contact-section" // Sẽ cần section này trong Index.tsx
+            href="#contact-section"
             onClick={(e) => handleNavClick(e, 'contact-section')}
-            // Sử dụng Button component của shadcn/ui thay vì class .btn tự định nghĩa
-            // Hoặc tái tạo style của .btn bằng Tailwind
             className="bg-dseza-green hover:bg-dseza-green-dark text-white font-bold py-2.5 px-6 rounded-full text-sm uppercase transition-colors"
           >
             {contactButtonText}

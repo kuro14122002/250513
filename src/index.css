@@ -1,6 +1,6 @@
-/* src/index.css - PHIÊN BẢN GỢI Ý HOÀN CHỈNH */
+/* src/index.css - PHIÊN BẢN CẬP NHẬT */
 
-/* 1. Import Fonts (Từ style.css tĩnh và file gốc của bạn) */
+/* 1. Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Open+Sans:wght@400;500;600;700&display=swap');
 
 /* 2. Tailwind Directives (Luôn đặt ở đầu) */
@@ -11,224 +11,334 @@
 /* 3. Định nghĩa Biến CSS và Base Styles trong @layer base */
 @layer base {
   :root {
-    /* === MÀU SẮC CƠ BẢN CHO SHADCN/UI === */
-    /* Tham khảo từ style.css tĩnh và file gốc của bạn, ánh xạ sang HSL cho shadcn */
-    /* Ví dụ: --light-gray: #F8F8F8  => 0 0% 97% */
-    /* Ví dụ: --text-color: #333 (hoặc #1F2937 từ file gốc) => 215 28% 17% */
-
-    --background: 0 0% 97%; /* #F8F8F8 - Nền sáng chính (tương đương --light-gray) */
-    --foreground: 215 28% 17%; /* #1F2937 / #333333 - Chữ chính trên nền sáng */
-
-    --card: 0 0% 100%;      /* #FFFFFF - Nền cho card, popover (tương đương --white) */
-    --card-foreground: 215 28% 17%; /* Chữ trên card */
-
+    /* === MÀU SẮC CƠ BẢN CHO SHADCN/UI (TỪ TAILWIND.CONFIG.TS) === */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 215 28% 17%;
-
-    /* === MÀU DSEZA (Thương hiệu) ÁNH XẠ VÀO HỆ THỐNG SHADCN/UI === */
-    /* DSEZA Primary Green: #4B7D3F -> HSL: 109 32% 39% */
-    --primary: 109 32% 39%;
-    --primary-foreground: 0 0% 100%; /* Chữ trắng trên nền primary */
-
-    /* DSEZA Accent (ví dụ dùng #5A8C3D -> HSL: 99 38% 45% hoặc --dark-green #3A612F) */
-    /* Bạn có thể chọn một trong hai hoặc một màu khác cho accent */
-    --accent: 99 38% 45%; /* #5A8C3D */
-    --accent-foreground: 0 0% 100%; /* Chữ trắng trên nền accent */
-
-    /* DSEZA Primary Green cũng được dùng cho focus ring */
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 109 32% 39%; /* DSEZA Green: #4B7D3F */
+    --primary-foreground: 0 0% 100%;
+    --accent: 99 38% 45%; /* DSEZA Green Light: #5A8C3D */
+    --accent-foreground: 0 0% 100%;
     --ring: 109 32% 39%;
-
-    /* === CÁC MÀU KHÁC CỦA SHADCN/UI === */
-    /* Bạn có thể giữ mặc định của shadcn hoặc tùy chỉnh */
-    --secondary: 210 40% 96.1%; /* Ví dụ: một màu xám nhạt hơn cho nền phụ */
-    --secondary-foreground: 222.2 47.4% 11.2%; /* Chữ trên nền phụ */
-
-    --destructive: 0 84.2% 60.2%; /* Màu đỏ cho destructive actions */
-    --destructive-foreground: 0 0% 98%; /* Chữ trên nền destructive */
-
-    --muted: 210 40% 90%; /* #E5E7EB (Gray-200) - Nền/chữ mờ */
-    --muted-foreground: 220 13% 40%; /* Chữ mờ hơn một chút #64748b */
-
-    --border: 210 31% 86%; /* #D1D5DB (Gray-300) - Viền */
-    --input: 210 31% 86%; /* Thường giống border cho input */
-
-    /* === CÁC BIẾN KHÁC CHO SHADCN/UI === */
-    --radius: 0.5rem; /* Bán kính bo góc mặc định */
-
-    /* === CÁC BIẾN MÀU DSEZA BỔ SUNG (TỪ STYLE.CSS TĨNH) === */
-    /* Có thể không cần thiết nếu đã map vào các biến shadcn ở trên */
-    /* Hoặc bạn có thể dùng trực tiếp trong tailwind.config.ts với tên tùy chỉnh */
-    /* --dseza-dark-green: #3A612F; (đã có trong tailwind.config.ts là dseza-green-dark) */
-    /* --dseza-dark-gray: #222222; (đã có trong tailwind.config.ts là dseza-gray-dark) */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --muted: 210 40% 90%;
+    --muted-foreground: 220 13% 40%;
+    --border: 210 31% 86%;
+    --input: 210 31% 86%;
+    --radius: 0.5rem;
   }
 
   .dark {
-    /* === DARK MODE === */
-    /* Điều chỉnh các giá trị HSL này cho phù hợp với dark mode của bạn */
-    --background: 215 28% 10%;    /* Ví dụ: #1a202c */
-    --foreground: 0 0% 97%;       /* #F8F8F8 */
-
-    --card: 215 28% 13%;          /* Nền card tối hơn một chút */
-    --card-foreground: 0 0% 97%;
-
-    --popover: 215 28% 13%;
-    --popover-foreground: 0 0% 97%;
-
-    --primary: 109 32% 45%; /* Sáng hơn một chút cho dark mode */
+    --background: 222.2 84% 4.9%; /* Dark background */
+    --foreground: 210 40% 98%;   /* Light text on dark background */
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 109 32% 45%; /* Slightly lighter primary for dark mode */
     --primary-foreground: 0 0% 100%;
-
-    --accent: 99 38% 50%; /* Sáng hơn một chút cho dark mode */
+    --accent: 99 38% 50%; /* Slightly lighter accent for dark mode */
     --accent-foreground: 0 0% 100%;
-
-    --secondary: 216 13% 25%; /* Nền phụ tối hơn */
-    --secondary-foreground: 0 0% 98%;
-
-    --destructive: 0 72.2% 50.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --muted: 220 13% 25%;
-    --muted-foreground: 210 40% 70%;
-
-    --border: 215 28% 25%;
-    --input: 215 28% 25%;
     --ring: 109 32% 45%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
   }
 
-  /* === BASE ELEMENT STYLES === */
-  /* Tailwind's preflight đã xử lý margin, padding, box-sizing */
   html {
-    scroll-behavior: smooth; /* Giữ lại từ style.css tĩnh */
+    scroll-behavior: smooth;
   }
 
   body {
     @apply bg-background text-foreground font-sans;
-    /* font-family và line-height sẽ được Tailwind xử lý qua class font-sans */
-    /* và các utility cho line-height */
-    line-height: 1.6; /* Có thể giữ lại nếu muốn ghi đè line-height mặc định của Tailwind */
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-
-  /* Không cần thiết nếu dùng utility class của Tailwind, nhưng có thể giữ nếu muốn style mặc định */
-  /*
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  ul {
-    list-style: none;
-  }
-  */
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-bold; /* Đã có trong file gốc của bạn */
+    @apply font-sans font-bold;
   }
 }
 
-
-/* 4. Custom Components trong @layer components (nếu cần) */
 @layer components {
-  /* Class .container từ style.css tĩnh */
-  /* Dự án React của bạn đã có .container-custom, bạn có thể: */
-  /* a) Đổi tên .container-custom thành .container ở mọi nơi */
-  /* b) Hoặc định nghĩa .container giống .container-custom */
-  .container {
-    @apply w-full max-w-[1200px] mx-auto px-[15px];
+  .container-custom {
+    @apply container mx-auto px-4;
+    /* max-width: 1200px; */
+    /* padding-left: 15px; */
+    /* padding-right: 15px; */
   }
 
-  .container-custom { /* Giữ lại từ dự án React của bạn */
-    @apply container mx-auto px-4; /* container của tailwind đã có mx-auto */
+  .glassmorphism-nav {
+    @apply bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm shadow-md border-b border-gray-200 dark:border-gray-700;
   }
 
-  /* Class .btn từ style.css tĩnh */
-  /* Nên ưu tiên sử dụng component <Button> của shadcn/ui. */
-  /* Nếu vẫn muốn dùng class .btn này cho các thẻ <a> hoặc button không phải component, bạn có thể định nghĩa ở đây */
-  /* Tuy nhiên, hãy cân nhắc kỹ vì nó có thể không nhất quán với theme shadcn */
-  /*
-  .btn {
-    @apply inline-block py-[10px] px-[25px] bg-primary text-primary-foreground rounded-full font-bold text-sm uppercase transition-colors duration-300 border-none cursor-pointer;
+  .collapsible-arrow[data-state='open'] {
+    transform: rotate(180deg);
   }
-  .btn:hover {
-    @apply bg-primary/90; // Ví dụ: làm tối màu primary đi một chút
-  }
-  */
-
-
-  /* Các class từ file tĩnh (style.css) mà bạn muốn giữ lại và khó tái tạo bằng Tailwind */
-  /* Ví dụ: .logo-text, .stat-item, .arrow-circle, .tab (nếu không dùng component Tabs của shadcn) */
-  /* Hãy cố gắng sử dụng utility classes của Tailwind trước khi thêm CSS tùy chỉnh ở đây. */
-
-  /* Ví dụ cho .logo-text từ style.css tĩnh, nếu dùng trong DsezaStaticHeader */
-  .logo-text .main-text {
-    /* Tailwind classes: text-2xl font-black tracking-wider */
-  }
-  .logo-text .sub-text {
-    /* Tailwind classes: text-[11px] font-medium tracking-[0.5px] leading-tight */
+  .collapsible-arrow {
+    transition: transform 0.2s ease-out;
   }
 
-
-  /* Ví dụ cho .stat-item, .stat-number, .stat-desc từ style.css tĩnh */
-  /* Nếu bạn không tạo component React riêng cho chúng và muốn dùng class */
-  /*
+  [data-radix-navigation-menu-viewport] {
+     width: auto !important;
+     min-width: 500px;
+  }
+  
+  /* DSEZA Header Specific Styles */
+  .logo-text-react {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Statistics Section Styles */
+  .statistics {
+    display: flex;
+    margin-bottom: 40px;
+    padding-left: 0;
+    position: relative;
+    z-index: 1;
+  }
+  
   .stat-item {
-     @apply mr-[50px] flex flex-col items-center;
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+  
   .stat-item:last-child {
-    @apply mr-0;
+    margin-right: 0;
   }
+  
   .stat-number {
-    @apply block text-[34px] font-black text-foreground leading-tight mb-[5px]; // text-foreground thay cho var(--text-color)
+    font-size: 34px;
+    font-weight: 900;
+    line-height: 1.1;
+    display: block;
+    margin-bottom: 5px;
   }
+  
   .stat-desc {
-    @apply block text-xs font-bold text-gray-600 uppercase tracking-[0.5px] mt-0; // text-gray-600 ví dụ
+    font-size: 12px;
+    font-weight: 700;
+    color: #555;
+    text-transform: uppercase;
+    margin-top: 0;
+    display: block;
+    letter-spacing: 0.5px;
   }
-  */
-
-  /* Ví dụ cho .btn-learn-more và .arrow-circle từ style.css tĩnh */
-  /* Nên xem xét dùng Button component của shadcn cho .btn-learn-more */
-  /*
+  
+  /* Bottom Left Controls Styles */
+  .bottom-left-controls {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    padding-left: 0;
+  }
+  
+  .learn-more {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    position: relative;
+  }
+  
   .btn-learn-more {
-    @apply py-[8px] pr-[25px] pl-[18px] text-xs rounded-full bg-white text-gray-800 border border-gray-300 font-bold transition-colors duration-300 cursor-pointer;
+    padding: 8px 25px 8px 18px;
+    font-size: 12px;
+    border-radius: 50px;
+    margin-right: 0;
+    background-color: white;
+    color: #222;
+    border: 1px solid #ccc;
+    font-weight: 700;
+    transition: background-color 0.3s, border-color 0.3s;
+    cursor: pointer;
   }
+  
   .btn-learn-more:hover {
-    @apply bg-gray-100 border-gray-400;
+    background-color: #f8f8f8;
+    border-color: #bbb;
   }
+  
   .arrow-circle {
-    @apply inline-flex items-center justify-center w-[30px] h-[30px] bg-primary text-primary-foreground rounded-full text-lg leading-none cursor-pointer transition-colors duration-300 ml-[-15px] z-10;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: #4B7D3F;
+    color: white;
+    border-radius: 50%;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: -15px;
+    z-index: 1;
   }
+  
   .arrow-circle:hover {
-     @apply bg-primary/90;
+    background-color: #3A612F;
   }
-  */
-
-  /* Class .tab và .tab.active từ style.css tĩnh */
-  /* Nếu bạn dùng component Tabs của shadcn/ui, bạn không cần những class này */
-  /*
+  
+  /* Pagination Dots */
+  .pagination {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  
+  .dot:last-child {
+    margin-right: 0;
+  }
+  
+  .dot.active {
+    background-color: #4B7D3F;
+  }
+  
+  /* Right Content Tabs */
+  .navigation-tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 40px;
+  }
+  
   .tab {
-    @apply py-[10px] font-bold relative mr-[30px] text-gray-400 uppercase text-sm cursor-pointer;
+    padding: 10px 0;
+    font-weight: 700;
+    position: relative;
+    margin-right: 30px;
+    color: #999;
+    text-transform: uppercase;
+    font-size: 14px;
+    cursor: pointer;
   }
-  .tab:last-child{
-    @apply mr-0;
+  
+  .tab:last-child {
+    margin-right: 0;
   }
+  
   .tab.active {
-    @apply text-foreground font-black; // text-foreground thay cho var(--text-color)
+    color: #333;
+    font-weight: 900;
   }
+  
   .tab.active::after {
     content: '';
-    @apply absolute bottom-[-1px] left-0 w-full h-[3px] bg-primary;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #4B7D3F;
   }
-  */
-
-}
-
-/* 5. Responsive Styles từ style.css tĩnh */
-/* Tailwind là mobile-first, nên nhiều style responsive sẽ được xử lý trực tiếp bằng các prefix như sm:, md:, lg: trong JSX. */
-/* Tuy nhiên, nếu có những thay đổi cấu trúc lớn ở các breakpoint cụ thể mà khó làm với Tailwind utility, bạn có thể thêm ở đây. */
-/* Nhưng hãy cố gắng hạn chế. */
-
-/* Ví dụ:
-@media (max-width: 992px) {
-    .main-content-custom-tablet { // Đặt tên class mới nếu cần
-        @apply flex-col py-10;
+  
+  /* Info Sections */
+  .tab-content {
+    /* animation: fadeIn 0.5s; */
+  }
+  
+  .section {
+    margin-bottom: 35px;
+  }
+  
+  .section:last-child {
+    margin-bottom: 0;
+  }
+  
+  .section h2 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #222;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  
+  .section p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.7;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 992px) {
+    .statistics {
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
+    
+    .stat-item {
+      margin-bottom: 25px;
+    }
+    
+    .bottom-left-controls {
+      margin-top: 30px;
+      justify-content: flex-start;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .statistics {
+      justify-content: space-around;
+    }
+    
+    .stat-item {
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .stat-item:last-child {
+      margin-right: 0;
+    }
+    
+    .stat-number {
+      font-size: 28px;
+    }
+    
+    .stat-desc {
+      font-size: 11px;
+    }
+    
+    .bottom-left-controls {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .learn-more {
+      margin-bottom: 15px;
+      margin-right: 0;
+    }
+    
+    .section h2 {
+      font-size: 24px;
+    }
+    
+    .section p {
+      font-size: 15px;
+    }
+  }
 }
-*/
