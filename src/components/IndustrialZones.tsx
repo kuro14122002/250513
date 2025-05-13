@@ -122,7 +122,7 @@ const IndustrialZones = ({ currentLang }: IndustrialZonesProps) => {
     <section className="py-10 bg-primary text-white">
       <div className="container-custom">
         <div className="flex justify-between items-center mb-6 md:mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold">
+        <h2 className="text-base md:text-lg font-bold">
             {currentLang === "vi" ? "KHU CÔNG NGHỆ CAO, TRUNG TÂM VI MẠCH BÁN DẪN VÀ TRÍ TUỆ NHÂN TẠO, CÁC KHU CÔNG NGHIỆP, KHU CNTT TẬP TRUNG, KHU THƯƠNG MẠI TỰ DO" : "HIGH-TECH PARKS, SEMICONDUCTOR AND ARTIFICIAL INTELLIGENCE CENTERS, INDUSTRIAL ZONES, CONCENTRATED IT PARKS, FREE TRADE ZONES"}
           </h2>
         </div>
